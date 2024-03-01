@@ -11,7 +11,7 @@ WIDTH = 128
 
 @st.cache(allow_output_mutation=True)  # Modified cache decorator
 def load_model():
-    model_path = "/mount/src/prediction/main.py/ResNEt50.h5"  # Corrected model path
+    model_path = "ResNEt50.h5"  # Corrected model path
     return tf.keras.models.load_model(model_path)
 
 def main():
