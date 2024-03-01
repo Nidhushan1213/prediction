@@ -4,14 +4,14 @@ import numpy as np
 from PIL import Image
 import lime
 from lime import lime_image
-from skimage.segmentation import mark_boundaries
+from skimage.segmentation import mark_boundaries  # Add this import
 
 HEIGHT = 128
 WIDTH = 128
 
-@st.cache(allow_output_mutation=True)  # Modified cache decorator
+@st.cache_data
 def load_model():
-    model_path = "ResNEt50.h5"  # Corrected model path
+    model_path =(r"C:\Users\ASUS\Desktop\AWS\ResNEt50.h5")
     return tf.keras.models.load_model(model_path)
 
 def main():
@@ -27,6 +27,7 @@ def main():
             st.write('Predicted Class:', predicted_class)
             st.image(lime_explanation.image, caption='Lime Explanation', use_column_width=True)
 
+
 def predict(image):
     batch_size = 1
     new_model = load_model()
@@ -41,7 +42,7 @@ def predict(image):
     
     # Lime explanation
     explainer = lime_image.LimeImageExplainer()
-    explanation = explainer.explain_instance(image_resized,  # Removed 'astype' as it's already in the correct format
+    explanation = explainer.explain_instance(image_resized.astype('double'), 
                                              new_model.predict, 
                                              top_labels=1, 
                                              hide_color=0, 
