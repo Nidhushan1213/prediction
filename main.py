@@ -11,7 +11,7 @@ WIDTH = 128
 
 @st.cache_data
 def load_model():
-    model_path =(r"C:\Users\ASUS\Desktop\AWS\ResNEt50.h5")
+    model_path =(r"ResNEt50.h5")
     return tf.keras.models.load_model(model_path)
 
 def main():
